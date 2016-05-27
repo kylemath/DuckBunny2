@@ -58,7 +58,29 @@ percent = round((yesE5 / totalE5) * 1000)/10;
 fprintf(['Providing the imperative phrase “duck eating the rabbit” increased the overall number of respondents who indicated they could see matched interpretations (Q5; ' ...
     num2str(yesE5) '/' num2str(totalE5) '; ' num2str(percent) '%%; ?2(' num2str(df) ') = ' num2str(round(chi2stat*100)/100) ', p = ' num2str(p) '). ']);
 
-%%Q5|~Q4
+
+%% figure 
+
+means = [yesE2/totalE2 yesE4/totalE4 yesE5/totalE5];
+
+
+stds = [sqrt(((yesE2/totalE2)*(1-(yesE2/totalE2)))/totalE2 ) sqrt(((yesE4/totalE4)*(1-(yesE4/totalE4)))/totalE4 ) sqrt(((yesE5/totalE5)*(1-(yesE5/totalE5)))/totalE5 )];
+figure('color','w');
+subplot(1,2,1);
+colormap(cool)
+hold on
+bar(1:3,means)
+errorbar(1:3,means,stds,'.','color','k')
+xlim([.5 3.5]);
+ylim([0 1]);
+   Labels = {['Q2 - ' num2str(totalE2) ' Subs'], ['Q4 - ' num2str(totalE4) ' Subs'], ['Q5 - ' num2str(totalE5) ' Subs']};
+   set(gca, 'XTick', 1:3, 'XTickLabel', Labels);
+   title(['Eating Question, Exp. 1']);
+   xlabel('Question');
+   ylabel('Proportion of Seers');
+   
+   
+%% Q5|~Q4  
 
 q5skip = find(isnan(Eating_data.Q5) == 1);
 q4no = find(Eating_data.Q4 == 2);
@@ -117,7 +139,26 @@ percent = round((yesN5 / totalN5) * 1000)/10;
 fprintf(['Providing the control phrase “duck next to the rabbit” increased the overall number of respondents who indicated they could see matched interpretations, but much less than in Exp. 1 (Q5; ' ...
     num2str(yesN5) '/' num2str(totalN5) '; ' num2str(percent) '%%; ?2(' num2str(df) ') = ' num2str(round(chi2stat*100)/100) ', p = ' num2str(round(p*1000)/1000) '). ']);
 
-%%Q5|~Q4
+%% figure 
+
+means = [yesN2/totalN2 yesN4/totalN4 yesN5/totalN5];
+
+
+stds = [sqrt(((yesN2/totalN2)*(1-(yesN2/totalN2)))/totalN2 ) sqrt(((yesN4/totalN4)*(1-(yesN4/totalN4)))/totalN4 ) sqrt(((yesN5/totalN5)*(1-(yesN5/totalN5)))/totalN5 )];
+subplot(1,2,2);
+colormap(cool)
+hold on
+bar(1:3,means)
+errorbar(1:3,means,stds,'.','color','k')
+xlim([.5 3.5]);
+ylim([0 1]);
+   Labels = {['Q2 - ' num2str(totalN2) ' Subs'], ['Q4 - ' num2str(totalN4) ' Subs'], ['Q5 - ' num2str(totalN5) ' Subs']};
+   set(gca, 'XTick', 1:3, 'XTickLabel', Labels);
+   title(['Next Question, Exp. 2']);
+   xlabel('Question');
+   ylabel('Proportion of Seers');
+
+%% Q5|~Q4
 
 q5skip = find(isnan(Next_data.Q5) == 1);
 q4no = find(Next_data.Q4 == 2);

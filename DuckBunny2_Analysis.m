@@ -1,9 +1,6 @@
 clear variables
 close all
 
-fprintf('Welcome to duck rabbit code');
-
-
 Eating_data = Import_Eating('M:\Data\DuckBunny2\OData\DuckBunny2_Fall2015_Eating.xlsx');
 Next_data = Import_Next('M:\Data\DuckBunny2\OData\DuckBunny2_Winter2016_Next.xlsx');
 
